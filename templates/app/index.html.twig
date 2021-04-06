@@ -1,7 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AppController!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .col-3 {
+            border: 1px solid;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Hello AppController! - {{ parent() }}
+{% endblock %}
 
 {% block body %}
-        Coucou
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <!-- commentaire html : présent dans navigateur -->
+                {{ topic1.title }}<br>
+                {{ topic1.desc }}
+                {#
+                    On peut aller chercher une clé de manière dynamique :
+                    {% set test = "title" %}
+                    {{ topic1[test] }}<br>
+                #}
+            </div>
+            <div class="col-3">{{ chaine }}</div>
+            <div class="col-3">
+                {% if entierTwig >= 10 %}
+                    {{ entierTwig }}
+                {% elseif entierTwig >= 5 %}
+                    Bof : {{ entierTwig }}
+                {% else %}
+                    Nul !
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <ul>
+                {% for key, city in cities %}
+                    <li>{{ key }} : {{ city }}</li>
+                    <li>{{ key ~ ' : ' ~ city }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="col-3">
+               <img src="{{ absolute_url(asset('img/telechargement.png')) }}" alt="" />
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

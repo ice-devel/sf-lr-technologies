@@ -6,14 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AppController extends AbstractController
+class RoutingController extends AbstractController
 {
     #[Route('/', name: 'app')]
     public function index(): Response
     {
         //return new Response("contenu");
 
-        return $this->render('app/index.html.twig');
+        return new Response("page accueil");
     }
 
     #[Route('/test', name: 'test')]
@@ -28,7 +28,13 @@ class AppController extends AbstractController
         return new Response("page user $id");
     }
 
-    #[Route('/user/{id}/show', name: 'user')]
+    #[Route('/user/all', name: 'user_all', priority: 1)]
+    public function userAll(): Response
+    {
+        return new Response("page users");
+    }
+
+    #[Route('/user/{id}/show', name: 'user_show')]
     public function userShow($id): Response
     {
         return new Response("page user $id");
@@ -39,17 +45,20 @@ class AppController extends AbstractController
             'year' => '20\d{2}',
             'month' => '\d{2}',
             'day' => '\d{2}',
-        ]
-    )]
+        ],
 
+    )]
     public function article($slug, $year, $month, $day): Response
     {
         return new Response("page article $slug");
     }
 
-    #[Route('/blog/{year}/{month}/{day?}', name: 'articles', defaults: [
-        'day' => null
-    ])]
+    #[Route('/blog/{year}/{month}/{day?}', name: 'articles',
+        defaults: [
+            'day' => null
+        ],
+        methods: ['GET']
+    )]
     public function articles($year, $month, $day=null): Response
     {
         dump($year, $month, $day);
