@@ -42,3 +42,5 @@ On instancie le kernel de symfony, création d'une Request puis envoi d'une Resp
 On définit une route et on l'associe à un controller. Les routes sont définies soit avec les attributs PHP,
 soit avec des annotations.
 Il faut écrire l'attribut juste avant la fonction à appelée.
+
+# II Routing
