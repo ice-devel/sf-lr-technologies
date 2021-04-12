@@ -15,11 +15,12 @@
 
 {% block body %}
     <div class="container">
+        <h2>Nous sommes le {{ datetime | date("d/m/Y H:i:s") }}</h2>
         <div class="row">
             <div class="col-3">
                 <!-- commentaire html : présent dans navigateur -->
-                {{ topic1.title }}<br>
-                {{ topic1.desc }}
+                {{ topic1.title | raw | upper }}<br>
+                {{ topic1.desc | u.truncate(19, '...', false) }}
                 {#
                     On peut aller chercher une clé de manière dynamique :
                     {% set test = "title" %}

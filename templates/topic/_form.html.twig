@@ -1,0 +1,28 @@
+{#
+{{ form(form) }}
+#}
+{#
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+#}
+{#
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+#}
+
+{{ form_start(form) }}
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title, {'attr': {'class': 'coucou'}}) }}
+    {{ form_errors(form.title) }}
+    {{ form_help(form.title) }}
+
+    {{ form_row(form.description, {'attr': {'class': 'tinymce2'}}) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
+

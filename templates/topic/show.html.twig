@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Topic{% endblock %}
+
+{% block body %}
+    <h1>Topic</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ topic.id }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ topic.createdAt ? topic.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ topic.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ topic.description }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ topic.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Liste des messages</h2>
+    {% for message in topic.messages %}
+        <div>
+            {{ message.text }}
+        </div>
+    {% endfor %}
+
+    <h2>Liste des tags</h2>
+    <ul>
+        {% for tag in topic.tags %}
+        <li>
+            {{ tag.text }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('topic_index') }}">back to list</a>
+
+    <a href="{{ path('topic_edit', {'id': topic.id}) }}">edit</a>
+
+    {{ include('topic/_delete_form.html.twig') }}
+{% endblock %}

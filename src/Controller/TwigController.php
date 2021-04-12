@@ -15,9 +15,10 @@ class TwigController extends AbstractController
         $entier = rand(1,20);
         $booleen = true;
         $cities = ['Lille', 'Paris', 'Toulouse'];
+        $datetime = new \DateTime();
 
         $topic1 = [
-            'title' => "PHP TOP MAIS..",
+            'title' => "<b>PHP TOP</b> <i>MAIS..</i>",
             'desc' => 'Mon projet en PHP il merde quand je fais blabla'
         ];
         $fct = function() {
@@ -30,7 +31,8 @@ class TwigController extends AbstractController
             'booleen' => $booleen,
             'topic1' => $topic1,
             'fct' => $fct,
-            'cities' => $cities
+            'cities' => $cities,
+            'datetime' => $datetime
         ]);
     }
 }
