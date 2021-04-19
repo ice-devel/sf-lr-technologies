@@ -168,3 +168,24 @@ make:crud
 - subresource
 
 # Tests automatisés fonctionnels / unitaires
+Tests automatisés : code qui permet de tester du code
+PHPUnit par défaut
+Permettre l'évolution de l'app en évitant les régressions
+
+Quand ?
+- On écrit le code en entier puis on teste : pas terrible
+- On écrit une méthode et on la teste
+- TDD : test driven development : on écrit le test : il marche pas - on écrit le code - le test marche
+- On rencontre un bug : on écrit qui le reproduit
+
+Tests de fumée / smoke test
+Tests critiques dans une app, comme vérifier que les pages principales répondent
+
+Tests unitaires
+Tester unitaire une function
+
+Tests functional
+Tester de manière globale une feature, comme la validation d'un formulaire dans un controller
+
+Bundles pratiques
+Tests : hautelook/AliceBundle (Alice + faker)

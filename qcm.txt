@@ -1,0 +1,33 @@
+Quel le rôle du controller front de Symfony ?
+- D’initialiser le Kernel grâce à une Request en vue d’obtenir une Response
+
+Peut-on utiliser Symfony sans la console ?
+- Oui toutes les commandes sont facultatives
+
+Quel est la particularité du dossier public ?
+C’est le seul à être accessible par les visiteurs
+
+A quoi sert Le routeur symfony ?
+- A Associer des routes à des controllers
+
+Grâce au moteur de template twig, on peut :
+- générer un template contenant des variables, des structures conditionnelles et itératives
+
+Dans un template twig, si je dois modifier une variable avant de l'afficher :
+- j'applique un filtre twig sur la variable : var | filtre
+
+Quel est la commande pour générer une entité ?
+- php bin/console make:entity
+
+Si je récupère une entité avec doctrine et que je la modifie, que dois-faire pour enregistrer les modifications ?
+- un flush
+
+Si une entité Produit a une propriété qui fait référence à son unique entité Catégorie,
+et qu'il peut y avoir plusieurs produits dans une catégorie, le type de mapping de cette propriété est un :
+- ManyToOne
+
+Dans un formulaire associé à une entité, peut-on ajouter un champ qui n'est pas une propriété de l'entité ?
+- Oui mais il faut utiliser l'option mapped=false
+
+Dans un test fonctionnel, il vaut mieux que notre classe hérite de :
+- WebTestCase
