@@ -6,10 +6,12 @@ use App\Entity\Topic;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +20,7 @@ class TopicType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextareaType::class, [
+            ->add('title', TextType::class, [
                 'label' => 'Titre',
                 'required' => true
             ])
@@ -30,9 +32,22 @@ class TopicType extends AbstractType
             ->add('reglement', CheckboxType::class, ['mapped' => false])
 
             /*
-            ->add('messages')
-            ->add('tags')
+            ->add('messages') *tomany
+            ->add('tags') *tomany
             */
+            /*
+             * *tomany : association avec entité existante
+             */
+            //->add('tags', null, ['choice_label' => 'text'])
+
+            /*
+             * *toMany : avec création d'entité : côté client en javascript
+             */
+            ->add('tags', CollectionType::class, [
+                'entry_type' => TagType::class,
+                'allow_add' => true,
+
+            ])
         ;
     }
 
