@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=MessageRepository::class)
  */
+#[ApiResource]
 class Message
 {
     /**
@@ -31,6 +34,7 @@ class Message
      * @ORM\ManyToOne(targetEntity=Topic::class, inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      */
+    #[ApiSubresource]
     private $topic;
 
     public function getId(): ?int

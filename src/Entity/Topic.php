@@ -2,40 +2,67 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\TopicRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TopicRepository::class)
  */
+#[ApiResource(
+    collectionOperations: ['GET' =>  ['normalization_context' => ['groups' => ['topic:read:collection']]]],
+    itemOperations: [
+        'GET' => ['normalization_context' => ['groups' => ['topic:read:item']]]
+    ],
+    denormalizationContext: ['groups' => ["topic:post"]],
+    normalizationContext: ['groups' => ["topic:read"]]
+)]
+#[ApiFilter(SearchFilter::class, properties: ['title' => 'partial'])]
+#[ApiFilter(DateFilter::class, properties: ['createdAt'])]
 class Topic
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"topic:read","topic:post"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("topic:read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"topic:read","topic:post", "topic:read:collection"})
+     * @Assert\NotNull()
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"topic:read","topic:post"})
+     * @Assert\NotNull()
      */
+    #[Assert\Length(
+        min: 10,
+        minMessage: 'La description c\'est minimum {{ limit }} caractères',
+    )]
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("topic:read")
      */
     private $slug;
 

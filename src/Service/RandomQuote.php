@@ -12,4 +12,6 @@ class RandomQuote
 
         return $quotes[rand(0,1)];
     }
+
+
 }

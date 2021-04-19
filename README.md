@@ -152,3 +152,19 @@ make:crud
 
 ## Relation entre entité
 
+
+# API / API Platform
+## API
+- normalization / serialization
+- gestion des erreurs (try catch)
+- gestion des routes : c'est la méthode qui définit l'action
+
+## API Platform
+- ApiResource
+- normalizationContext / denormalizationContext / groups
+- datapersister
+- pagination
+- filter
+- subresource
+
+# Tests automatisés fonctionnels / unitaires
